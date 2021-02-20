@@ -43,7 +43,7 @@
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form>
     </nav>
-    <form action="" method="POST" class="mx-5 my-3" style="width: 30%" >
+    <form action="login" method="POST" class="mx-5 my-3" style="width: 30%" >
         @csrf
         <div class="form-group">
             <label>User Name</label>
