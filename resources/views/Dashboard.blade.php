@@ -32,7 +32,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="/dashboard" method="POST">
+                    <form action="/dashboard" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
                             <label for="name">Product Name</label>
@@ -43,8 +43,10 @@
                             <input type="file" name="image" class="form-control" id="productImage" placeholder="Product Image">
                         </div>
                         <div class="form-group">
-                            <label for="description">Product Description</label>
-                            <input type="text" name="description" class="form-control" id="productDescription" placeholder="Product Description">
+                            {{-- <label for="description">Product Description</label> --}}
+                            {{-- <input type="text" name="description" class="form-control" id="productDescription" placeholder="Product Description"> --}}
+                            <textarea name="description" id="" cols="70" rows="5" placeholder="Product Description"></textarea>
+
                         </div>
                         <div class="form-group">
                             <label for="name">Product Colour</label>
@@ -71,5 +73,21 @@
         </div>
     </div>
 
+
+
+    {{-- for displaying product --}}
+    <div class="row">
+        @foreach ($products as $item)
+        <div class="col-12 col-md-2 mx-5 my-3 ">
+               <div class="card card-body">
+                   <img class="card-img-top img-fluid" src="{{asset('/images/products/'.$item['image'])}}" alt="Card image cap">
+                   <h5 class="card-title">{{$item['name']}}</h5>
+                   <p class="card-text">{{$item['description']}}</p>
+                   <a href="/product" class="btn btn-primary">View</a>
+                    {{-- {{$item['description']}} --}}
+               </div>
+            </div>
+            @endforeach
+    </div>
 @stop
 

@@ -39,3 +39,7 @@ Route::view('dashboard', 'Dashboard');
 
 
 Route::post('/dashboard', [ProductController::class,'store']);
+Route::get('/dashboard', [ProductController::class, 'show']);
+
+
+Route::view('product', 'product');

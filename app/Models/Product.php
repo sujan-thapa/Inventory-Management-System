@@ -22,5 +22,8 @@ class Product extends Model
         'quantity',
         'price'
     ];
+    // protected $casts = [
+    //     'properties' => 'array',
+    // ];
 
 }
