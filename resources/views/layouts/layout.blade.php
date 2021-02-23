@@ -32,7 +32,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <!-- Add Material CSS, replace Bootstrap CSS -->
-    <link href="css/app.css" rel="stylesheet">
+    <link href="/css/app.css" rel="stylesheet">
     <title>@yield('title')</title>
   </head>
   <body>

@@ -76,7 +76,7 @@
 
 
     {{-- for displaying product --}}
-    <div class="row">
+    {{-- <div class="row">
         @foreach ($products as $item)
         <div class="col-12 col-md-2 mx-5 my-3 ">
                <div class="card card-body">
@@ -84,10 +84,93 @@
                    <h5 class="card-title">{{$item['name']}}</h5>
                    <p class="card-text">{{$item['description']}}</p>
                    <a href="/product" class="btn btn-primary">View</a>
-                    {{-- {{$item['description']}} --}}
+                     {{$item['description']}}
                </div>
             </div>
             @endforeach
+    </div> --}}
+    <div class="mx-5 row">
+        <hr><hr>
     </div>
+    {{-- Inventory in table --}}
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+            <th scope="col">S.N.</th>
+            <th scope="col">Product Name</th>
+            <th scope="col">Product Image</th>
+            <th scope="col">Product Description</th>
+            <th scope="col">Product Color</th>
+            <th scope="col">Product Quantity</th>
+            <th scope="col">Product Price</th>
+            <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($products as $item)
+                <tr>
+            <th scope="row">{{$item['id']}}</th>
+            <td>{{$item['name']}}</td>
+            <td>{{asset('/images/products/'.$item['image'])}}</td>
+            <td>{{$item['description']}}</td>
+            <td>{{$item['color']}}</td>
+            <td>{{$item['quantity']}}</td>
+            <td>{{$item['price']}}</td>
+            <td>
+                <form action="" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    {{-- <a href=""><span class="material-icons">visibility</span></a> --}}
+                    {{-- <a href="edit/{{$item->id}}"><span class="material-icons">mode_edit</span></a> --}}
+                    {{-- <a href="/edit"><span class="material-icons">mode_edit</span></a> --}}
+
+                    {{-- for showing single product details lin --}}
+                    <a href="/product/{{ $item->id }}" class="material-icons">visibility</a>
+
+                    {{-- for editing --}}
+                    <a href="/edit/{{ $item->id }}"><span class="material-icons">mode_edit</span></a>
+
+                    {{-- for deleting --}}
+                    <a href="delete/{{ $item->id }}"><span class="material-icons">delete</span></a>
+                </form>
+            </td>
+
+            </tr>
+
+            @endforeach
+
+
+        </tbody>
+        </table>
+
+        {{-- <table class="table">
+        <thead class="thead-light">
+            <tr>
+            <th scope="col">#</th>
+            <th scope="col">First</th>
+            <th scope="col">Last</th>
+            <th scope="col">Handle</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+            </tr>
+            <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+            </tr>
+            <tr>
+            <th scope="row">3</th>
+            <td>Larry</td>
+            <td>the Bird</td>
+            <td>@twitter</td>
+            </tr>
+        </tbody> --}}
+</table>
 @stop
 

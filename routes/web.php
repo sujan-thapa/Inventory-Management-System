@@ -3,6 +3,8 @@
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RegisterController;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Auth\Middleware\Authenticate;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,12 +22,16 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 Route::get('/', function () {
+   if
+    (Auth::check()) {
+       return redirect('/dashboard');
+   }
     return view('index');
 });
 // Route::view('login', 'index');
-Route::post('login', [LoginController::class, 'authenticatee']);
+Route::post('/login', [LoginController::class, 'authenticatee'])->name('login');
 
-Route::view('register', 'register');
+// Route::view('register', 'register');
 Route::post('/register', [RegisterController::class,'reg']);
 
 // Route::post('/register', [RegisterController::class, 'reg']);
@@ -35,11 +41,22 @@ Route::view('rgh', 'rough'); */
 // Route::view('master', 'layouts/master');
 // Route::view('rgh', 'rough');
 
-Route::view('dashboard', 'Dashboard');
+// Route::view('dashboard', 'Dashboard');
+
 
 
 Route::post('/dashboard', [ProductController::class,'store']);
 Route::get('/dashboard', [ProductController::class, 'show']);
 
 
-Route::view('product', 'product');
+// Route::view('product', 'product');
+// Route::view('edit', 'edit');
+
+Route::get('/product/{id}', [ProductController::class,'getProductById']);
+
+// Route::get('/edit', [ProductController::class,'edit']);
+Route::get('/edit/{id}', [ProductController::class,'edit']);
+Route::post('/update', [ProductController::class,'update'])->name('product.update');
+Route::get('delete/{id}', [ProductController::class,'delete']);
+
+// Route::view('vg', 'rh');
