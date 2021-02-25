@@ -32,10 +32,21 @@ class LoginController extends Controller
             return redirect('/dashboard');
         } else {
 
-            return redirect('/');
+            // return redirect('/');
+            return back();
             // return 'vg';
             // return back()->withErrors('sujanvg');
         }
 
+    }
+
+    // for logging out with the help of authentication ->destroys session
+    public function logout(Request $request)
+    {
+
+        Auth::logout();
+        // $request->session()->invalidate();
+
+        return redirect('/');
     }
 }

@@ -22,14 +22,13 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 Route::get('/', function () {
-   if
-    (Auth::check()) {
+   if (Auth::check()) {
        return redirect('/dashboard');
    }
     return view('index');
-});
+})->name('login');
 // Route::view('login', 'index');
-Route::post('/login', [LoginController::class, 'authenticatee'])->name('login');
+Route::post('/login', [LoginController::class, 'authenticatee']);
 
 // Route::view('register', 'register');
 Route::post('/register', [RegisterController::class,'reg']);
@@ -44,9 +43,14 @@ Route::view('rgh', 'rough'); */
 // Route::view('dashboard', 'Dashboard');
 
 
+// Route::post('/dashboard', function () {
+//     if (Auth::check()) {
+//         # code...
+//         return
+//     }
 
-Route::post('/dashboard', [ProductController::class,'store']);
-Route::get('/dashboard', [ProductController::class, 'show']);
+// });
+
 
 
 // Route::view('product', 'product');
@@ -60,3 +64,11 @@ Route::post('/update', [ProductController::class,'update'])->name('product.updat
 Route::get('delete/{id}', [ProductController::class,'delete']);
 
 // Route::view('vg', 'rh');
+
+// For logging out
+Route::get('/logout',[LoginController::class,'logout']);
+
+Route::group(['middleware' => ['auth']],function(){
+    Route::post('/dashboard', [ProductController::class, 'store']);
+    Route::get('/dashboard', [ProductController::class, 'show']);
+});
